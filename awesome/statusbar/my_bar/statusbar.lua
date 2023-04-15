@@ -1,6 +1,7 @@
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+local beautiful  = require("beautiful")
 
 -- Wibox handling library
 local wibox = require("wibox")
@@ -61,12 +62,12 @@ function WB.setup_common_boxes(s)
     filter  = awful.widget.tasklist.filter.currenttags,
     buttons = WB.tasklist,
     style = {
-        -- shape_border_width = 1,
-        -- shape_border_color = beautiful.fg_minimize,
-        -- shape_border_color_focus = beautiful.border_focus,
+        shape_border_width = 2,
+        shape_border_color = beautiful.fg_minimize,
+        shape_border_color_focus = beautiful.border_normal,
         shape = round_rect,
-        -- bg_focus = beautiful.bg_focus,
-        -- fg_focus = beautiful.fg_focus,
+        bg_focus = beautiful.bg_focus,
+        fg_focus = beautiful.fg_focus,
     },
     layout = {
         spacing = 8,

@@ -146,7 +146,7 @@ function WB.generate_wibox_one(s)
         screen = s,
         height = 23,
         border_width = 4,
-        -- opacity = 0.7,
+        opacity = 0.9,
         -- shape = round_rect,
     })
 

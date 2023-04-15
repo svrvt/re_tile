@@ -1,14 +1,14 @@
 local gmc = require("themes.gmc")
 
-local theme_assets = require("beautiful.theme_assets")
+-- local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
--- theme.font          = "Terminus 8" -- "Tamsyn 10" -- "Sans 8"
-theme.font          = "Noto Sans Mono 11"
--- theme.taglist_font  = "Inconsolata Medium 9"
+theme.font          = "Roboto Mono Nerd Font 12"
+theme.taglist_font  = "Roboto Mono Nerd Font 13"
+-- theme.taglist_font  = "awesomewm-font 12"
 
 theme.bg_normal     = gmc.color['brassy800']    .. "cc"
 theme.bg_focus      = gmc.color['brassy200']    .. "cc"
@@ -25,9 +25,9 @@ theme.fg_minimize   = gmc.color['brassy800']
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(3)
 
-theme.border_normal = gmc.color['brassy800']    .. "cc"
-theme.border_focus  = gmc.color['brassy200']    .. "cc"
-theme.border_marked = gmc.color['redA700']      .. "cc"
+theme.border_normal = gmc.color['brassy800']
+theme.border_focus  = gmc.color['brassy200']
+theme.border_marked = gmc.color['redA700']
 
 -- There are other variable sets
 -- overriding the default one when
@@ -42,11 +42,10 @@ theme.border_marked = gmc.color['redA700']      .. "cc"
 theme.taglist_bg_focus    = gmc.color['brassy200']
 -- theme.taglist_bg_focus    = "png:" .. theme_path .. "misc/copycat-holo/taglist_bg_focus.png"
 theme.taglist_fg_focus    = gmc.color['brassy800']
-theme.taglist_fg_occupied = gmc.color['rdB1']
+theme.taglist_fg_occupied = gmc.color['rdB5']
 theme.taglist_fg_urgent   = gmc.color['redA700']
 theme.taglist_fg_empty    = gmc.color['brassy200']
 theme.taglist_spacing     = 2
-theme.taglist_font        = "awesomewm-font 12"
 
 -- theme.tasklist_bg_normal = gmc.color['brassy800']   .. "88"
 -- --theme.tasklist_bg_normal = "png:" .. theme_path .. "misc/copycat-holo/bg_focus.png"
