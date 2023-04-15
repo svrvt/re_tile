@@ -30,7 +30,7 @@ local function hlspan(text)
 end
 
 local function altspan(text)
-  return "<span color='" .. gmc.color['green900'] .. "'>" .. text .. "</span>"
+  return "<span color='" .. gmc.color['yellow900'] .. "'>" .. text .. "</span>"
 end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --

@@ -28,7 +28,7 @@ pastel.initialize = function()
    require("components.volume-adjust")
 
    -- Import panels
-   local left_panel = require("components.pastel.left-panel")
+  local left_panel = require("components.pastel.left-panel")
    local top_panel = require("components.pastel.top-panel")
 
    -- Set up each screen (add tags & panels)

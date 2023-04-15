@@ -26,20 +26,20 @@ require("main.theme")
 
 -- Custom Local Library
 local main = {
-  layouts    = require("main.layouts"),
-  tags       = require("main.tags"),
-  menu       = require("main.menu"),
-  rules      = require("main.rules"),
-  brockcochranfunc = require("main.brockcochranfunc")
+	layouts = require("main.layouts"),
+	tags = require("main.tags"),
+	menu = require("main.menu"),
+	rules = require("main.rules"),
+	brockcochranfunc = require("main.brockcochranfunc"),
 }
 
 -- Custom Local Library: Keys and Mouse Binding
 local binding = {
-  globalbuttons = require("binding.globalbuttons"),
-  clientbuttons = require("binding.clientbuttons"),
-  globalkeys    = require("binding.globalkeys"),
-  clientkeys    = require("binding.clientkeys"),
-  bindtotags    = require("binding.bindtotags")
+	globalbuttons = require("binding.globalbuttons"),
+	clientbuttons = require("binding.clientbuttons"),
+	globalkeys = require("binding.globalkeys"),
+	clientkeys = require("binding.clientkeys"),
+	bindtotags = require("binding.bindtotags"),
 }
 
 -- Layouts
@@ -50,9 +50,7 @@ RC.tags = main.tags()
 
 -- Menu
 RC.mainmenu = awful.menu({ items = main.menu() }) -- in globalkeys
-RC.launcher = awful.widget.launcher(
-  { image = beautiful.awesome_icon, menu = RC.mainmenu }
-)
+RC.launcher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = RC.mainmenu })
 menubar.utils.terminal = RC.vars.terminal
 
 -- Mouse and Key bindings
@@ -64,10 +62,7 @@ root.buttons(binding.globalbuttons())
 root.keys(RC.globalkeys)
 
 -- Rules
-awful.rules.rules = main.rules(
-  binding.clientkeys(),
-  binding.clientbuttons()
-)
+awful.rules.rules = main.rules(binding.clientkeys(), binding.clientbuttons())
 
 -- Signals
 require("main.signals")
@@ -93,11 +88,8 @@ awful.spawn.with_shell("picom")
 -- os.execute("pgrep -u $USER -x xscreensaver || (xscreensaver -nosplash &)")
 
 -- Statusbar: Wibar
-local statusbar = require("statusbar.ru.statusbar")
+local statusbar = require("statusbar.my_bar.statusbar")
 -- local statusbar = require("statusbar.default.statusbar")
 -- local statusbar = require("statusbar.vicious.statusbar")
--- local statusbar = require("statusbar.stacked.statusbar")
--- local statusbar = require("statusbar.lain.statusbar")
--- local statusbar = require("statusbar.arrow.statusbar")
 
 statusbar()

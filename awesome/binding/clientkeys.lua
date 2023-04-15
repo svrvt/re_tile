@@ -40,13 +40,13 @@ function _M.get()
       c:raise()
     end,
       { description = "(ре)максимизировать", group = "client" }),
-    awful.key({ modkey, "Control" }, "m",
+    awful.key({ modkey, "Shift" }, "m",
       function(c)
         c.maximized_vertical = not c.maximized_vertical
         c:raise()
       end,
       { description = "(ре)максимизировать по вертикали", group = "client" }),
-    awful.key({ modkey, "Shift" }, "m",
+    awful.key({ modkey, "Control" }, "m",
       function(c)
         c.maximized_horizontal = not c.maximized_horizontal
         c:raise()
