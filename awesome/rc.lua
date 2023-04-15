@@ -71,7 +71,7 @@ require("main.signals")
 os.setlocale(os.getenv("LANG"))
 
 -- Gaps
-beautiful.useless_gap = 5
+beautiful.useless_gap = 2
 
 -- Autostart
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")

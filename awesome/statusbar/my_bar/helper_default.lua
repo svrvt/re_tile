@@ -1,10 +1,15 @@
 -- {{{ Required libraries
 -- Standard awesome library
 local awful      = require("awful")
-local beautiful  = require("beautiful")
+-- local beautiful  = require("beautiful")
 
 -- Wibox handling library
 local wibox      = require("wibox")
+
+-- local gears = require('gears')
+-- local round_rect = function(cr, w, h)
+--     gears.shape.rounded_rect(cr, w, h, 10)
+-- end
 
 -- local mpdarc_widget = require("awesome-wm-widgets.mpdarc-widget.mpdarc")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
@@ -136,7 +141,14 @@ function WB.generate_wibox_one(s)
     -- layout: l_left, tasklist, l_right
 
     -- Create the wibox
-    s.wibox_top = awful.wibar({ position = "top", screen = s, height = 23})
+    s.wibox_top = awful.wibar({
+        position = "top",
+        screen = s,
+        height = 23,
+        border_width = 4,
+        -- opacity = 0.7,
+        -- shape = round_rect,
+    })
 
     -- Add widgets to the wibox
     s.wibox_top:setup {

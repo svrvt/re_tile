@@ -1,12 +1,16 @@
 -- Standard awesome library
-local gears = require("gears")
+-- local gears = require("gears")
 local awful = require("awful")
 
 -- Widget and layout library
-local wibox = require("wibox")
+-- local wibox = require("wibox")
 
 -- Theme handling library
 local beautiful = require("beautiful")
+
+-- local round_rect = function(cr, w, h)
+--     gears.shape.rounded_rect(cr, w, h, 10)
+-- end
 
 -- Custom Local Library: Common Functional Decoration
 require("deco.titlebar")
@@ -47,4 +51,10 @@ end)
 --
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- Rounded windows
+-- client.connect_signal('manage', function(c)
+--     c.shape = round_rect
+-- end)
+
 -- }}}

@@ -23,7 +23,7 @@ theme.fg_urgent     = gmc.color['brassy900']
 theme.fg_minimize   = gmc.color['brassy800']
 
 theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(5)
+theme.border_width  = dpi(3)
 
 theme.border_normal = gmc.color['brassy800']    .. "cc"
 theme.border_focus  = gmc.color['brassy200']    .. "cc"

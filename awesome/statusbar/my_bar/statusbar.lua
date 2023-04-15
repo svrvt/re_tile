@@ -4,13 +4,17 @@ local awful = require("awful")
 
 -- Wibox handling library
 local wibox = require("wibox")
-local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+
 -- Custom Local Library: Wallpaper, Keys and Mouse Binding
 local deco = {
   wallpaper = require("deco.wallpaper"),
   taglist   = require("deco.taglist"),
   tasklist  = require("deco.tasklist")
 }
+
+local round_rect = function(cr, w, h)
+    gears.shape.rounded_rect(cr, w, h, 10)
+end
 
 local _M = {}
 
@@ -22,7 +26,7 @@ wibox_package = WB -- global object name
 
 -- default statusbar
 require("statusbar.my_bar.helper_default")
--- require("statusbar.ru.helper_empty")
+-- require("statusbar.my_bar.helper_empty")
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -51,12 +55,49 @@ function WB.setup_common_boxes(s)
     filter  = awful.widget.taglist.filter.all,
     buttons = WB.taglist
   }
-
   -- Create a tasklist widget
   s.tasklist = awful.widget.tasklist {
     screen  = s,
     filter  = awful.widget.tasklist.filter.currenttags,
-    buttons = WB.tasklist
+    buttons = WB.tasklist,
+    style = {
+        -- shape_border_width = 1,
+        -- shape_border_color = beautiful.fg_minimize,
+        -- shape_border_color_focus = beautiful.border_focus,
+        shape = round_rect,
+        -- bg_focus = beautiful.bg_focus,
+        -- fg_focus = beautiful.fg_focus,
+    },
+    layout = {
+        spacing = 8,
+        fixed_width = 50,
+        layout = wibox.layout.flex.horizontal,
+    },
+    widget_template = {
+        {
+            {
+                {
+                    {
+                        id = 'icon_role',
+                        widget = wibox.widget.imagebox,
+                    },
+                    margins = 2,
+                    widget = wibox.container.margin,
+                },
+                {
+                    id = 'text_role',
+                    widget = wibox.widget.textbox,
+                },
+                layout = wibox.layout.fixed.horizontal,
+            },
+            left = 10,
+            right = 10,
+            widget = wibox.container.margin,
+            forced_width = 10,
+        },
+        id = 'background_role',
+        widget = wibox.container.background,
+    },
   }
 end
 
