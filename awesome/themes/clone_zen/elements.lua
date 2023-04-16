@@ -7,8 +7,8 @@ local dpi = xresources.apply_dpi
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 theme.font          = "Roboto Mono Nerd Font 12"
-theme.taglist_font  = "Roboto Mono Nerd Font 13"
--- theme.taglist_font  = "awesomewm-font 12"
+-- theme.taglist_font  = "Roboto Mono Nerd Font 13"
+theme.taglist_font  = "awesomewm-font 12"
 
 theme.bg_normal     = gmc.color['brassy800']    .. "cc"
 theme.bg_focus      = gmc.color['brassy200']    .. "cc"

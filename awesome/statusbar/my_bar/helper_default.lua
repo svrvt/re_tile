@@ -53,7 +53,7 @@ function WB.add_widgets_left(s)
     return {
         -- Left widgets
         layout = wibox.layout.fixed.horizontal,
-        --RC.launcher,
+        -- RC.launcher,
         s.taglist,
         -- wibox.widget.textbox(" | "),
         s.promptbox,
