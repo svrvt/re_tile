@@ -1,19 +1,18 @@
 #!/bin/bash
 
 function run {
-  if ! pgrep $1 ;
-  then
-    $@&
-  fi
+	if ! pgrep $1; then
+		$@ &
+	fi
 }
 run feh --bg-fill --randomize ~/.config/awesome/themes/wallpaper/
 run setxkbmap -option grp:alt_shift_toggle -layout us,ru
 
 # run nm-applet
-run kbdd &
-run xscreensaver -nosplash &
+run kbdd
+run xscreensaver -nosplash
 # run nm-tray
-run connman-ui-gtk
+# run connman-ui-gtk
 
 run /home/ru/.local/bin/greenclip daemon
 
