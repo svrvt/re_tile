@@ -9,7 +9,7 @@ YELLOW='\e[33m'
 GREEN='\e[32m'
 GREEN2='[32;1m'
 WHITE='[37;1m'
-BLUE='[34;1m'
+# BLUE='[34;1m'
 
 RV='\u001b[7m'
 
