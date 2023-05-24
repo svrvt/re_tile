@@ -104,6 +104,7 @@ function back_sym {
 	# 			echo -e "${RED}Can't move the old config!${RC}"
 	# 			exit 1
 	# 		fi
+	#		  echo -e "${WHITE} Remove backups with 'rm -ir ~/.*.old && rm -ir ~/.config/*.old' ${RC}"
 	# 	fi
 	# 	echo -e "${GREEN}Linking ${DOT_HOME_PATH}/${config} to ${HOME}/.${config}${RC}"
 	# 	if ! ln -snf "${DOT_HOME_PATH}/${config}" "${HOME}/.${config}"; then
