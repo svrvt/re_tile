@@ -4,11 +4,20 @@ local gmc = require("themes.gmc")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
+hostname = io.popen("uname -n"):read()
+
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-theme.font          = "Roboto Mono Nerd Font 12"
--- theme.taglist_font  = "Roboto Mono Nerd Font 13"
-theme.taglist_font  = "awesomewm-font 12"
+if hostname == "pcRU" then
+  theme.font          = "Roboto Mono Nerd Font 16"
+  theme.taglist_font  = "awesomewm-font 16"
+elseif hostname == "vaio" then
+  theme.font          = "Roboto Mono Nerd Font 12"
+  theme.taglist_font  = "awesomewm-font 12"
+end
+
+-- theme.font          = "Roboto Mono Nerd Font 16"
+-- theme.taglist_font  = "awesomewm-font 16"
 
 theme.bg_normal     = gmc.color['brassy800']    .. "cc"
 theme.bg_focus      = gmc.color['brassy200']    .. "cc"

@@ -3,9 +3,9 @@
 local awful = require("awful")
 -- local beautiful  = require("beautiful")
 
-local connman = require("connman_widget")
+-- local connman = require("connman_widget")
 -- set the GUI client.
-connman.gui_client = "cmst"
+-- connman.gui_client = "cmst"
 
 -- Wibox handling library
 local wibox = require("wibox")
@@ -78,7 +78,7 @@ function WB.add_widgets_right(s)
 		-- docker_widget{
 		--     -- number_of_containers = 5
 		-- },
-		connman, -- <- connman widget
+		-- connman, -- <- connman widget
 		volume_widget({
 			--https://pavelmakhov.com/awesome-wm-widgets/
 			--horizontal_bar, vertical_bar, icon,icon_and_text, arc
