@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function run {
-	if ! pgrep $1; then
-		$@ &
+	if ! pgrep "$1"; then
+		"$@" &
 	fi
 }
 run feh --bg-fill --randomize ~/.config/awesome/themes/wallpaper/
@@ -10,11 +10,19 @@ run setxkbmap -option grp:alt_shift_toggle -layout us,ru
 
 # run nm-applet
 # run kbdd
-run xscreensaver -nosplash
+# run xscreensaver -nosplash
 # run nm-tray
 # run connman-ui-gtk
 
+# индикатор и переключатель раскладки клавиатуры для X11.
+# gxkb
+
+# привязки клавиш
+# run sxhkd # -c $HOME/.config/sxhkd/sxhkdrc
+
 run /home/ru/.local/bin/greenclip daemon
+
+# run dex /home/ru/.config/autostart/Yandex.Disk.desktop
 
 # run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 #run xrandr --output VGA-1 --primary --mode 1360x768 --pos 0x0 --rotate normal

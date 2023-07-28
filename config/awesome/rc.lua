@@ -77,6 +77,7 @@ beautiful.useless_gap = 2
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 -- awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")
 awful.spawn.with_shell("picom")
+-- awful.spawn.with_shell("yandex-disk start")
 
 --awful.spawn.with_shell(fm)
 --awful.spawn.with_shell(terminal)
