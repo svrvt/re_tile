@@ -7,7 +7,7 @@ RC='\e[0m'
 RED='\e[31m'
 YELLOW='\e[33m'
 GREEN='\e[32m'
-GREEN2='[32;1m'
+# GREEN2='[32;1m'
 WHITE='[37;1m'
 # BLUE='[34;1m'
 
@@ -16,9 +16,9 @@ RV='\u001b[7m'
 THIS_REPO_PATH="$(dirname "$(realpath "$0")")"
 # THIS_REPO_PATH=$HOME/REPOS/reinst
 DOT_CFG_PATH=$THIS_REPO_PATH/config
-DOT_HOME_PATH=$THIS_REPO_PATH/home
+# DOT_HOME_PATH=$THIS_REPO_PATH/home
 USR_CFG_PATH=$HOME/.config
-SRC_DIR=$HOME/src/lua
+# SRC_DIR=$HOME/src/lua
 FONT_DIR=$HOME/.local/share/fonts
 # USR_CFG_PATH=$THIS_REPO_PATH/test
 
@@ -32,11 +32,11 @@ command_exists() {
 
 checkEnv() {
 	## Check Package Handeler
-	PACKAGEMANAGER='apt dnf pacman'
+	PACKAGEMANAGER='apt dnf'
 	for pgm in ${PACKAGEMANAGER}; do
-		if command_exists ${pgm}; then
+		if command_exists "${pgm}"; then
 			PACKAGER=${pgm}
-			echo -e ${RV}"Using ${pgm}"
+			echo -e "${RV}Using ${pgm}"
 		fi
 	done
 
@@ -61,19 +61,7 @@ function install_packages {
 	DEPENDENCIES='xauth xorg i3lock'
 
 	echo -e "${YELLOW}Installing required packages...${RC}"
-	if [[ $PACKAGER == "pacman" ]]; then
-		if ! command_exists yay; then
-			echo "Installing yay..."
-			sudo "${PACKAGER} --noconfirm -S base-devel"
-			$(cd /opt && sudo git clone https://aur.archlinux.org/yay-git.git && sudo chown -R \
-				${USER}:${USER} ./yay-git && cd yay-git && makepkg --noconfirm -si)
-		else
-			echo "Command yay already installed"
-		fi
-		yay --noconfirm -S ${DEPENDENCIES}
-	else
-		sudo ${PACKAGER} install -yq ${DEPENDENCIES}
-	fi
+	sudo ${PACKAGER} install -yq ${DEPENDENCIES}
 }
 
 function back_sym {
@@ -119,16 +107,6 @@ function back_sym {
 function install_lua {
 	if ! command_exists lua; then
 		echo -e "${RV} Installing Lua ${RC}"
-		mkdir -p "$SRC_DIR"
-		cd "$SRC_DIR" || return
-		curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
-		tar -zxf lua-5.3.5.tar.gz
-		rm -rf lua-5.3.5.tar.gz
-		cd lua-5.3.5 || return
-		make linux test
-		sudo make install
-	else
-		echo -e "${RV} Lua is installed ${RC}"
 	fi
 }
 
@@ -137,15 +115,6 @@ function install_luarocks {
 	if command_exists lua; then
 		if ! command_exists luarocks; then
 			echo -e "${RV} Installing Luarocks... ${RC}"
-			mkdir -p "$SRC_DIR"
-			cd "$SRC_DIR" || return
-			wget https://luarocks.org/releases/luarocks-3.8.0.tar.gz
-			tar -zxpf luarocks-3.8.0.tar.gz
-			rm -rf luarocks-3.8.0.tar.gz
-			cd luarocks-3.8.0 || return
-			./configure --with-lua-include=/usr/local/include
-			make
-			sudo make install
 		else
 			echo -e "${RV} Luarocks is installed${RC}"
 		fi
