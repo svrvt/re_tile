@@ -38,6 +38,7 @@ function _M.get(clientkeys, clientbuttons)
         "Arandr",
         "Blueman-manager",
         "Gpick",
+        "krunner",
         "Kruler",
         "MessageWin", -- kalarm.
         "Sxiv",

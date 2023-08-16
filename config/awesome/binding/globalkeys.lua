@@ -17,6 +17,7 @@ local editor_cmd = terminal .. " -e " .. RC.vars.editor
 
 local runner = RC.vars.runner
 local buf_chng = RC.vars.buf_chng
+local runner2 = RC.vars.runner2
 
 local modkey = RC.vars.modkey
 
@@ -142,6 +143,9 @@ function _M.get()
       { description = "runner", group = "RU" }),
     awful.key({ modkey }, "a", function() awful.spawn(buf_chng) end,
       { description = "буфер обмена", group = "RU" }),
+    awful.key({ modkey }, "k", function()
+			awful.spawn.with_shell(runner2, { floating = true })
+		end, { description = "kde runner", group = "RU" }),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
       { description = "menubar", group = "RU" }),
