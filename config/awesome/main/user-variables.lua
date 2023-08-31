@@ -24,7 +24,7 @@ local _M = {
 	editor = os.getenv("editor") or "nvim",
 	runner = "rofi -show",
 	runner_all = "rofi-bangs.sh",
-	buf_chng = 'rofi -theme ~/.config/rofi/clipboard.rasi -modi "clipboard:greenclip print" -show clipboard',
+	buf_chng = 'rofi -theme ~/.config/rofi/only_list_config.rasi -modi "clipboard:greenclip print" -show clipboard',
 	runner2 = "krunner",
 	-- device, used in vicious widget
 	--wlandev = 'wlan0',
