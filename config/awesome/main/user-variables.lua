@@ -23,8 +23,8 @@ local _M = {
 	browser = "yandex-browser-stable",
 	editor = os.getenv("editor") or "nvim",
 	runner = "rofi -show",
-	-- runner = "/home/ru/reinst/scripts/rofi/rofi-bangs.sh",
-	buf_chng = 'rofi -modi "clipboard:greenclip print" -show clipboard',
+	-- runner = "rofi-bangs.sh",
+	buf_chng = 'rofi -theme ~/.config/rofi/clipboard.rasi -modi "clipboard:greenclip print" -show clipboard',
 	runner2 = "krunner",
 	-- device, used in vicious widget
 	--wlandev = 'wlan0',
