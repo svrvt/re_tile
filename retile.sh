@@ -14,13 +14,11 @@ WHITE='[37;1m'
 RV='\u001b[7m'
 
 THIS_REPO_PATH="$(dirname "$(realpath "$0")")"
-# THIS_REPO_PATH=$HOME/REPOS/reinst
 DOT_CFG_PATH=$THIS_REPO_PATH/config
-# DOT_HOME_PATH=$THIS_REPO_PATH/home
+DOT_HOME_PATH=$THIS_REPO_PATH/home
 USR_CFG_PATH=$HOME/.config
 # SRC_DIR=$HOME/src/lua
 FONT_DIR=$HOME/.local/share/fonts
-# USR_CFG_PATH=$THIS_REPO_PATH/test
 
 configExists() {
 	[[ -e "$1" ]] && [[ ! -L "$1" ]]
@@ -69,7 +67,7 @@ function back_sym {
 	# файлы которых есть в ./config ./home
 	mkdir -p "$USR_CFG_PATH"
 	echo -e "${RV}${YELLOW} Backing up existing files... ${RC}"
-	for config in $(ls ${DOT_CFG_PATH}); do
+	for config in $(command ls "${DOT_CFG_PATH}"); do
 		if configExists "${USR_CFG_PATH}/${config}"; then
 			echo -e "${YELLOW}Moving old config ${USR_CFG_PATH}/${config} to ${USR_CFG_PATH}/${config}.old${RC}"
 			if ! mv "${USR_CFG_PATH}/${config}" "${USR_CFG_PATH}/${config}.old"; then
@@ -85,21 +83,21 @@ function back_sym {
 		fi
 	done
 
-	# for config in $(ls ${DOT_HOME_PATH}); do
-	# 	if configExists "$HOME/.${config}"; then
-	# 		echo -e "${YELLOW}Moving old config ${HOME}/.${config} to ${HOME}/.${config}.old${RC}"
-	# 		if ! mv "${HOME}/.${config}" "${HOME}/.${config}.old"; then
-	# 			echo -e "${RED}Can't move the old config!${RC}"
-	# 			exit 1
-	# 		fi
-	#		  echo -e "${WHITE} Remove backups with 'rm -ir ~/.*.old && rm -ir ~/.config/*.old' ${RC}"
-	# 	fi
-	# 	echo -e "${GREEN}Linking ${DOT_HOME_PATH}/${config} to ${HOME}/.${config}${RC}"
-	# 	if ! ln -snf "${DOT_HOME_PATH}/${config}" "${HOME}/.${config}"; then
-	# 		echo echo -e "${RED}Can't link the config!${RC}"
-	# 		exit 1
-	# 	fi
-	# done
+	for config in $(command ls "${DOT_HOME_PATH}"); do
+		if configExists "$HOME/.${config}"; then
+			echo -e "${YELLOW}Moving old config ${HOME}/.${config} to ${HOME}/.${config}.old${RC}"
+			if ! mv "${HOME}/.${config}" "${HOME}/.${config}.old"; then
+				echo -e "${RED}Can't move the old config!${RC}"
+				exit 1
+			fi
+			echo -e "${WHITE} Remove backups with 'rm -ir ~/.*.old && rm -ir ~/.config/*.old' ${RC}"
+		fi
+		echo -e "${GREEN}Linking ${DOT_HOME_PATH}/${config} to ${HOME}/.${config}${RC}"
+		if ! ln -snf "${DOT_HOME_PATH}/${config}" "${HOME}/.${config}"; then
+			echo echo -e "${RED}Can't link the config!${RC}"
+			exit 1
+		fi
+	done
 
 }
 
