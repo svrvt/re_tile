@@ -13,19 +13,19 @@ WHITE='[37;1m'
 
 RV='\u001b[7m'
 
-THIS_REPO_PATH="$(dirname "$(realpath "$0")")"
-DOT_CFG_PATH=$THIS_REPO_PATH/config
-DOT_HOME_PATH=$THIS_REPO_PATH/home
-USR_CFG_PATH=$HOME/.config
-# SRC_DIR=$HOME/src/lua
-FONT_DIR=$HOME/.local/share/fonts
+this_dir="$(dirname "$(realpath "$0")")"
+dot_config=$this_dir/config
+dot_home=$this_dir/home
+config_dir=$HOME/.config
+# src_dir=$HOME/src/lua
+font_dir=$HOME/.local/share/fonts
 
 configExists() {
 	[[ -e "$1" ]] && [[ ! -L "$1" ]]
 }
 
 command_exists() {
-	command -v $1 >/dev/null 2>&1
+	command -v "$1" >/dev/null 2>&1
 }
 
 checkEnv() {
@@ -44,7 +44,7 @@ checkEnv() {
 	fi
 
 	## Check if the current directory is writable.
-	PATHs="$THIS_REPO_PATH $USR_CFG_PATH "
+	PATHs="$this_dir $config_dir "
 	for path in $PATHs; do
 		if [[ ! -w ${path} ]]; then
 			echo -e "${RED}Can't write to ${path}${RC}"
@@ -59,31 +59,31 @@ function install_packages {
 	DEPENDENCIES='xauth xorg i3lock'
 
 	echo -e "${YELLOW}Installing required packages...${RC}"
-	sudo ${PACKAGER} install -yq ${DEPENDENCIES}
+	sudo "${PACKAGER}" install -yq "${DEPENDENCIES}"
 }
 
 function back_sym {
 	# перед создание линков делает бекапы только тех пользовательских конфикураций,
 	# файлы которых есть в ./config ./home
-	mkdir -p "$USR_CFG_PATH"
+	mkdir -p "$config_dir"
 	echo -e "${RV}${YELLOW} Backing up existing files... ${RC}"
-	for config in $(command ls "${DOT_CFG_PATH}"); do
-		if configExists "${USR_CFG_PATH}/${config}"; then
-			echo -e "${YELLOW}Moving old config ${USR_CFG_PATH}/${config} to ${USR_CFG_PATH}/${config}.old${RC}"
-			if ! mv "${USR_CFG_PATH}/${config}" "${USR_CFG_PATH}/${config}.old"; then
+	for config in $(command ls "${dot_config}"); do
+		if configExists "${config_dir}/${config}"; then
+			echo -e "${YELLOW}Moving old config ${config_dir}/${config} to ${config_dir}/${config}.old${RC}"
+			if ! mv "${config_dir}/${config}" "${config_dir}/${config}.old"; then
 				echo -e "${RED}Can't move the old config!${RC}"
 				exit 1
 			fi
 			echo -e "${WHITE} Remove backups with 'rm -ir ~/.*.old && rm -ir ~/.config/*.old' ${RC}"
 		fi
-		echo -e "${GREEN}Linking ${DOT_CFG_PATH}/${config} to ${USR_CFG_PATH}/${config}${RC}"
-		if ! ln -snf "${DOT_CFG_PATH}/${config}" "${USR_CFG_PATH}/${config}"; then
+		echo -e "${GREEN}Linking ${dot_config}/${config} to ${config_dir}/${config}${RC}"
+		if ! ln -snf "${dot_config}/${config}" "${config_dir}/${config}"; then
 			echo echo -e "${RED}Can't link the config!${RC}"
 			exit 1
 		fi
 	done
 
-	for config in $(command ls "${DOT_HOME_PATH}"); do
+	for config in $(command ls "${dot_home}"); do
 		if configExists "$HOME/.${config}"; then
 			echo -e "${YELLOW}Moving old config ${HOME}/.${config} to ${HOME}/.${config}.old${RC}"
 			if ! mv "${HOME}/.${config}" "${HOME}/.${config}.old"; then
@@ -92,8 +92,8 @@ function back_sym {
 			fi
 			echo -e "${WHITE} Remove backups with 'rm -ir ~/.*.old && rm -ir ~/.config/*.old' ${RC}"
 		fi
-		echo -e "${GREEN}Linking ${DOT_HOME_PATH}/${config} to ${HOME}/.${config}${RC}"
-		if ! ln -snf "${DOT_HOME_PATH}/${config}" "${HOME}/.${config}"; then
+		echo -e "${GREEN}Linking ${dot_home}/${config} to ${HOME}/.${config}${RC}"
+		if ! ln -snf "${dot_home}/${config}" "${HOME}/.${config}"; then
 			echo echo -e "${RED}Can't link the config!${RC}"
 			exit 1
 		fi
@@ -135,8 +135,8 @@ function install_awesome {
 
 function install_fonts {
 	echo -e "\u001b[7m Installing fonts \u001b[0m"
-	mkdir -p "$FONT_DIR"
-	cp "$THIS_REPO_PATH"/set/awesomewm-font.ttf ~/.local/share/fonts/
+	mkdir -p "$font_dir"
+	cp "$this_dir"/set/awesomewm-font.ttf ~/.local/share/fonts/
 	sudo fc-cache -fr
 }
 
@@ -151,7 +151,7 @@ function all {
 	echo -e "\u001b[7m Done! \u001b[0m"
 }
 
-if [ "$1" = "--all" -o "$1" = "-a" ]; then
+if [ "$1" = "--all" ] || [ "$1" = "-a" ]; then
 	all
 	exit 0
 fi
