@@ -13,6 +13,7 @@ local menubar = require("menubar")
 RC = {} -- global namespace, on top before require any modules
 RC.vars = require("main.user-variables")
 modkey = RC.vars.modkey
+altkey = RC.vars.altkey
 
 -- Error handling
 require("main.error-handling")

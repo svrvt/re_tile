@@ -21,6 +21,7 @@ local buf_chng = RC.vars.buf_chng
 local runner2 = RC.vars.runner2
 
 local modkey = RC.vars.modkey
+local altkey = RC.vars.altkey
 
 local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
@@ -167,7 +168,7 @@ function _M.get()
 			awful.spawn(buf_chng)
 		end, { description = "буфер обмена", group = "RU" }),
 
-		awful.key({ modkey }, "k", function()
+		awful.key({ altkey }, "space", function()
 			awful.spawn.with_shell(runner2, { floating = true })
 		end, { description = "kde runner", group = "RU" }),
 		-- Menubar

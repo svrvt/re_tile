@@ -31,7 +31,7 @@ local _M = {
 	--wlandev = 'wlp2s0b1', --# void on notebook
 	wlandev = "radio_adapter",
 	modkey = "Mod4",
-	-- altkey = "Mod1",
+	altkey = "Mod1",
 }
 
 return _M

@@ -5,8 +5,22 @@ function run {
 		"$@" &
 	fi
 }
-run feh --bg-fill --randomize ~/.config/awesome/themes/wallpaper/
+
 run setxkbmap -option grp:alt_shift_toggle -layout us,ru
+
+if [[ $HOSTNAME =~ "pcRU" ]]; then
+	THEMES=still
+elif [[ $HOSTNAME =~ "vaio" ]]; then
+	THEMES=down
+else
+	THEMES=still
+fi
+
+if [[ $THEMES =~ "still" ]]; then
+	run feh --bg-fill --randomize ~/.config/awesome/themes/wallpaper/still
+elif [[ $THEMES =~ "down" ]]; then
+	run feh --bg-fill --randomize ~/.config/awesome/themes/wallpaper/down
+fi
 
 # run nm-applet
 # run kbdd
