@@ -58,7 +58,7 @@ printf '%s\n' "$session" >"$HOME/.WM.last"
 
 case $session in
 awesome)
-	xscreensaver &
+	# xscreensaver &
 	exec awesome
 	;;
 
@@ -83,8 +83,9 @@ dwm)
 	;;
 
 kde)
-	xscreensaver &
-	exec startkde
+	# xscreensaver &
+	# exec startkde
+	exec plasma-session
 	;;
 
 mate)
