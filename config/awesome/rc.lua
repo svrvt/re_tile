@@ -75,9 +75,12 @@ os.setlocale(os.getenv("LANG"))
 beautiful.useless_gap = 2
 
 -- Autostart
-awful.spawn.with_shell("~/.config/awesome/autostart.sh")
+
+require("autostart")
+
+-- awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 -- awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")
-awful.spawn.with_shell("picom")
+-- awful.spawn.with_shell("picom")
 -- awful.spawn.with_shell("yandex-disk start")
 
 --awful.spawn.with_shell(fm)
