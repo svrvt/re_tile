@@ -11,7 +11,7 @@ local function run_once(cmd)
 	awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || (%s)", findme, cmd), false)
 end
 
----[[
+--[[
 if hostname == "pcRU" then
 	run_once(" xrandr \
     --output HDMI-0 --mode 2560x1440 --pos 0x0 --rotate normal \

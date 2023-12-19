@@ -20,6 +20,17 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	unset f
 fi
 
+if [ "$HOST" = pcRU ]; then
+	xrandr --output VGA-0 --mode 1366x768 --rotate normal
+elif [ "$HOST" = vaio ]; then
+	if xrandr | grep -q 'VGA-0 connected'; then
+		xrandr --output LVDS-0 --mode 1366x768 --pos 0x0 --rotate normal
+		xrandr --output VGA-0 --mode 1366x768 --left-of LVDS-0 --rotate normal --noprimary
+	else
+		xrandr --output LVDS-0 --mode 1366x768 --pos 0x0 --rotate normal
+	fi
+fi
+
 # /etc/X11/xinit/xinitrc
 
 # if [ -n "$(which luarocks 2>/dev/null)" ]; then
