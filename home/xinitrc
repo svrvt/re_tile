@@ -59,7 +59,7 @@ printf '%s\n' "$session" >"$HOME/.WM.last"
 case $session in
 awesome)
 	# xscreensaver &
-	exec awesome
+	exec dbus-launch --sh-syntax --exit-with-session awesome
 	;;
 
 herbst | herbstluftwm)

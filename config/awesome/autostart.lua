@@ -1,5 +1,5 @@
 local awful = require("awful")
-local gears = require("gears")
+-- local gears = require("gears")
 local hostname = io.popen("uname -n"):read()
 
 local function run_once(cmd)
@@ -10,16 +10,17 @@ local function run_once(cmd)
 	end
 	awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || (%s)", findme, cmd), false)
 end
+
 ---[[
 if hostname == "pcRU" then
 	run_once(" xrandr \
     --output HDMI-0 --mode 2560x1440 --pos 0x0 --rotate normal \
-		--output DP-0 --mode 2560x1440 --pos 2560x0 --rotate normal \
-		--output DP-2 --mode 2560x1440 --pos 5120x0 --rotate normal \
+    --output DP-0 --mode 2560x1440 --pos 2560x0 --rotate normal \
+    --output DP-2 --mode 2560x1440 --pos 5120x0 --rotate normal \
   ")
 elseif hostname == "vaio" then
 	run_once("xrandr --output LVDS-0 --mode 1366x768 --pos 0x0 --rotate normal")
-	run_once("xrandr --output VGA-0 --mode 1366x768 --pos -1366x0 --rotate normal --left-of LVDS-0")
+	run_once("xrandr --output VGA-0 --mode 1366x768 --rotate normal --left-of LVDS-0 --noprimary")
 end
 --]]
 
@@ -37,11 +38,12 @@ elseif ImaGes == "down" then
 	run_once("feh --bg-fill --randomize ~/.config/awesome/themes/wallpaper/down")
 end
 
-run_once('xmodmap -e "pointer = 3 2 1 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 4 5')
--- picom
+-- run_once('xmodmap -e "pointer = 3 2 1 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 4 5')
+
 run_once("setxkbmap -option grp:alt_shift_toggle -layout us,ru")
-run_once("~/.local/bin/greenclip daemon")
--- run_once("picom")
+-- picom
 run_once("picom --config ~/.config/picom/picom.conf")
 
-return autostart
+run_once("~/.local/bin/greenclip daemon")
+
+-- return autostart
