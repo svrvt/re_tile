@@ -7,20 +7,29 @@ local layouts = require("rice.layouts")
 
 ---@class Rice.Tags
 ---@field names string[] # List of default tag names for each screen
+-- local tags = {
+--     names = {
+--         "1",
+--         "2",
+--         "3",
+--         "4",
+--         "5",
+--         "6",
+--         "7",
+--         "8",
+--         "9",
+--     },
+-- }
+
 local tags = {
     names = {
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
+        "",
+        "",
+        "",
+        "",
+        "",
     },
 }
-
 capi.awesome.connect_signal("tag::build", function(tag, args)
     tag.layout = layouts.list[1]
     tag.gap_single_client = false

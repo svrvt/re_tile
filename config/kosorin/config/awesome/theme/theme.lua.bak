@@ -33,7 +33,6 @@ theme.icon_theme = "Archdroid-Amber"
 theme.font_name = "Roboto Mono Nerd Font"
 theme.font_size = 12
 
--- theme.taglist_font = "awesomewm-font 16"
 -- TODO: Move to the utils?
 ---@param args? { name?: string, size?: number, size_factor?: number, style?: string|string[] }
 ---@return string
@@ -42,7 +41,7 @@ function theme.build_font(args)
         return theme.font_name .. " " .. theme.font_size
     end
 
-    local font = args.name or theme.font_name -- or theme.taglist_font
+    local font = args.name or theme.font_name
 
     if args.style then
         local style
@@ -72,22 +71,24 @@ theme.palette = setmetatable({
     red = "#cc6666",
     orange = "#de935f",
     yellow = "#f0c674",
-    green = "#b5a642", -- "#7cb36b", -- original: #b5bd68
+    green = "#7cb36b", -- original: #b5bd68
     cyan = "#78bab9", -- original: #8abeb7
     blue = "#81a2be",
     magenta = "#b294bb",
     gray = "#767876",
+    brassy = "#575025",
     --
     black_bright = "#3c4044",
     white_bright = "#eaeaea",
     red_bright = "#d54e53",
     orange_bright = "#e78c45",
     yellow_bright = "#e7c547",
-    green_bright = "#ddd1a0", -- "#71c464", -- original: #b9ca4a
+    green_bright = "#71c464", -- original: #b9ca4a
     cyan_bright = "#6acdcc", -- original: #70c0b1
     blue_bright = "#7aa6da",
     magenta_bright = "#c397d8",
     gray_bright = "#a7aaa8",
+    brassy_bright = "#ddd1a0",
 }, hcolor.palette_metatable)
 
 theme.color_names = {
@@ -102,11 +103,12 @@ theme.color_names = {
         "blue",
         "magenta",
         "gray",
+        "brassy",
     },
     common = {
-        bg = "green_20",
-        fg = "green_bright_100",
-        primary = "green",
+        bg = "black",
+        fg = "white",
+        primary = "yellow",
         secondary = "blue",
         urgent = "red",
     },
@@ -147,7 +149,6 @@ theme.screen_selection_color = hcolor.change(theme.common.primary, {
 
 theme.wibar = {
     bg = theme.common.bg,
-    -- bg = theme.palette.green_20,
     spacing = dpi(4),
     paddings = hui.new({ dpi(4), dpi(2) }),
 }
@@ -218,7 +219,7 @@ theme.capsule.styles = {
         hover_overlay = noice.value.Default,
         press_overlay = noice.value.Default,
         bg = theme.common.bg_125,
-        fg = theme.common.fg,
+        fg = theme.common.fg_bright,
         border_color = theme.common.bg_145,
         border_width = dpi(1),
     },
@@ -267,8 +268,7 @@ theme.popup = {
 theme.popup.default_style = {
     bg = theme.common.bg,
     fg = theme.common.fg,
-    -- border_color = theme.common.bg_bright,
-    border_color = theme.common.bg_75,
+    border_color = theme.common.bg_bright,
     border_width = dpi(3),
     shape = function(cr, width, height)
         gshape.rounded_rect(cr, width, height, dpi(12))
@@ -498,8 +498,7 @@ theme.volume_osd = {
     default_style = setmetatable({
         bg = theme.common.bg,
         fg = theme.common.fg,
-        -- border_color = theme.common.bg_bright,
-        border_color = theme.common.bg_75,
+        border_color = theme.common.bg_bright,
         border_width = dpi(1),
         placement = function(d)
             aplacement.top(d, {
@@ -629,11 +628,10 @@ theme.taglist = {
 theme.taglist.item = {
     normal = setmetatable({
         border_width = dpi(1),
-        bg = theme.palette.magenta_57,
     }, { __index = theme.capsule.styles.normal }),
     active = setmetatable({
-        bg = theme.common.primary_bright,
-        fg = theme.common.fg_30,
+        bg = theme.common.primary_50,
+        fg = theme.common.fg_bright,
         border_color = theme.common.primary_75,
         border_width = dpi(1),
     }, { __index = theme.capsule.styles.normal }),
@@ -680,18 +678,17 @@ local client_border_radius = dpi(0)
 
 theme.client = {
     normal = {
-        -- bg = theme.common.bg_66,
-        bg = theme.palette.black,
+        bg = theme.common.bg_66,
         fg = theme.common.fg,
-        -- border_color = theme.common.bg_140 ,
-        border_color = theme.common.primary_30,
+        -- border_color = theme.common.bg_140,
+        border_color = theme.palette.brassy,
         border_width = client_border_width,
     },
     active = {
-        -- bg = theme.common.bg,
-        bg = theme.palette.black,
+        bg = theme.common.bg,
         fg = theme.common.fg_bright,
-        border_color = theme.common.primary_bright,
+        -- border_color = theme.common.primary_bright,
+        border_color = theme.palette.brassy_bright,
         border_width = client_border_width,
     },
     urgent = {
