@@ -23,11 +23,11 @@ fi
 if [ "$HOST" = pcRU ]; then
 	xrandr --output VGA-0 --mode 1366x768 --rotate normal
 elif [ "$HOST" = vaio ]; then
-	if xrandr | grep -q 'VGA-0 connected'; then
-		xrandr --output LVDS-0 --mode 1366x768 --pos 0x0 --rotate normal
-		xrandr --output VGA-0 --mode 1366x768 --left-of LVDS-0 --rotate normal --noprimary
-	else
-		xrandr --output LVDS-0 --mode 1366x768 --pos 0x0 --rotate normal
+	if xrandr | grep -q 'HDMI-0 connected'; then
+		# xrandr --output LVDS-0 --mode 1366x768 --pos 0x0 --rotate normal
+		xrandr --output HDMI-0 --mode 1920x1080 --left-of LVDS-0 --rotate normal --noprimary
+	# else
+	# 	xrandr --output LVDS-0 --mode 1366x768 --pos 0x0 --rotate normal
 	fi
 fi
 
