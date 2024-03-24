@@ -8,7 +8,7 @@ mkdir -p $src_dir
 
 # git clone https://github.com/lgi-devs/lgi.git 
 # cd lgi || exit 
-# sed -i 's|PKGS = |PKGS = lua |' Makefile
+# sed -i 's|PKGS = |PKGS = lua |' lgi/Makefile
 # make PREFIX=/usr LUA_VERSION=5.4 && sudo make install LUA_VERSION=5.4 PREFIX=/usr
 # sudo mkdir -p /usr/local/lib/lua/5.4/
 # sudo cp -r lgi/ /usr/local/lib/lua/5.4/
