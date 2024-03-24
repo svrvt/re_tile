@@ -1,0 +1,4 @@
+[submodule "config/awesome"]
+	path = config/awesome
+	url = https://github.com/chikh-chikh/awesome-rice.git
+	branch = ru
