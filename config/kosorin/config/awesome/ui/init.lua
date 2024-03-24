@@ -1,8 +1,0 @@
-require("ui.notification")
-require("ui.client")
-require("ui.mouse")
-require("ui.osd")
-require("ui.menu")
-require("ui.topbar")
-require("ui.titlebar")
-require("ui.wallpaper")
