@@ -94,9 +94,8 @@ dwm)
 	;;
 
 kde)
-	# xscreensaver &
-	# exec startkde
-	exec plasma-session
+	xscreensaver &
+	exec startkde
 	;;
 
 mate)
