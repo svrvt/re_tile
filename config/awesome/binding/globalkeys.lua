@@ -189,10 +189,10 @@ function _M.get()
 		--awful.key({ modkey, "Control" }, "Left",  function () awful.client.moveresize( 20,  20, -40, -40) end),
 		--awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize(-20, -20,  40,  40) end),
 		awful.key({ modkey, "Control" }, "Down", function()
-			awful.client.moveresize(0, 0, 0, -20)
+			awful.client.moveresize(0, 10, 0, -10)
 		end),
 		awful.key({ modkey, "Control" }, "Up", function()
-			awful.client.moveresize(0, 0, 0, 20)
+			awful.client.moveresize(0, -10, 0, 10)
 		end),
 		awful.key({ modkey, "Control" }, "Left", function()
 			awful.client.moveresize(0, 0, -20, 0)
