@@ -20,8 +20,11 @@ config_dir=$HOME/.config
 # src_dir=$HOME/src/lua
 font_dir=$HOME/.local/share/fonts
 
+linkExists() {
+	[[ -e "$1" ]] && [[ -L "$1" ]]
+}
 configExists() {
-	[[ -e "$1" ]] && [[ ! -L "$1" ]]
+	[[ -e "$1" ]]
 }
 
 command_exists() {
@@ -65,40 +68,50 @@ function install_packages {
 function back_sym {
 	# перед создание линков делает бекапы только тех пользовательских конфикураций,
 	# файлы которых есть в ./config ./home
-	mkdir -p "$config_dir"
-	echo -e "${RV}${YELLOW} Backing up existing files... ${RC}"
+	echo -e "\u001b${YELLOW} Backing up existing files... ${RC}"
 	for config in $(command ls "${dot_config}"); do
-		if configExists "${config_dir}/${config}"; then
-			echo -e "${YELLOW}Moving old config ${config_dir}/${config} to ${config_dir}/${config}.old${RC}"
-			if ! mv "${config_dir}/${config}" "${config_dir}/${config}.old"; then
-				echo -e "${RED}Can't move the old config!${RC}"
+		if linkExists "${config_dir}/${config}"; then
+			echo -e "${YELLOW}Removing old link ${config_dir}/${config} ${RC}"
+			if ! rm -rf "${config_dir}/${config}"; then
+				echo -e "${RED}Can't remove the old link!${RC}"
 				exit 1
 			fi
-			echo -e "${WHITE} Remove backups with 'rm -ir ~/.*.old && rm -ir ~/.config/*.old' ${RC}"
+			# echo -e "${WHITE} Remove backups with 'rm -ir ~/.*.old && rm -ir ~/.config/*.old' ${RC}"
+    elif configExists "${config_dir}/${config}"; then
+      echo -e "${YELLOW}Moving old config ${config_dir}/${config} -> ${config_dir}/$config.old($(date -u +%d-%B-%H:%M:%S)) ${RC}"
+      if ! mv "${config_dir}/${config}" "${config_dir}/${config}.old($(date -u +%d-%B-%H:%M:%S))"; then
+				echo -e "${RED}Can't backup the old config!${RC}"
+				exit 1
+			fi
 		fi
-		echo -e "${GREEN}Linking ${dot_config}/${config} to ${config_dir}/${config}${RC}"
-		if ! ln -snf "${dot_config}/${config}" "${config_dir}/${config}"; then
-			echo echo -e "${RED}Can't link the config!${RC}"
+		echo -e "${GREEN}Copy ${dot_config}/${config} to ${config_dir}/${config}${RC}"
+		if ! cp -a "${dot_config}/${config}" "${config_dir}/${config}"; then
+			echo echo -e "${RED}Can't copy the config!${RC}"
 			exit 1
 		fi
 	done
 
 	for config in $(command ls "${dot_home}"); do
-		if configExists "$HOME/.${config}"; then
-			echo -e "${YELLOW}Moving old config ${HOME}/.${config} to ${HOME}/.${config}.old${RC}"
-			if ! mv "${HOME}/.${config}" "${HOME}/.${config}.old"; then
+		if linkExists "$HOME/.${config}"; then
+			echo -e "${YELLOW}Removing old link ${HOME}/.${config}"
+			if ! rm -f "${HOME}/.${config}"; then
 				echo -e "${RED}Can't move the old config!${RC}"
 				exit 1
 			fi
-			echo -e "${WHITE} Remove backups with 'rm -ir ~/.*.old && rm -ir ~/.config/*.old' ${RC}"
+    elif configExists "${HOME}/.${config}"; then
+      echo -e "${YELLOW}Moving old config ${HOME}/.${config} -> ${HOME}/.$config.old($(date -u +%d-%B-%H:%M:%S)) ${RC}"
+      if ! mv "${HOME}/.${config}" "${HOME}/.${config}.old($(date -u +%d-%B-%H:%M:%S))"; then
+				echo -e "${RED}Can't backup the old config!${RC}"
+				exit 1
+			fi
+			# echo -e "${WHITE} Remove backups with 'rm -ir ~/.*.old && rm -ir ~/.config/*.old' ${RC}"
 		fi
-		echo -e "${GREEN}Linking ${dot_home}/${config} to ${HOME}/.${config}${RC}"
-		if ! ln -snf "${dot_home}/${config}" "${HOME}/.${config}"; then
-			echo echo -e "${RED}Can't link the config!${RC}"
+		echo -e "${GREEN}Copy ${dot_home}/${config} to ${HOME}/.${config}${RC}"
+		if ! cp -a "${dot_home}/${config}" "${HOME}/.${config}"; then
+			echo echo -e "${RED}Can't copy the config!${RC}"
 			exit 1
 		fi
 	done
-
 }
 
 # Lua
